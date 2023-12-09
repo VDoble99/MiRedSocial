@@ -11,7 +11,7 @@
     <!--Favicon-->
 
     <!-- AlpineJS -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
 
     <!--Boxicons-->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -24,7 +24,7 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
-<body class="bg-gray-100 dark:bg-dark-main flex justify-center">
+<body class="bg-gray-100 dark:bg-dark-main flex justify-center dark:text-dark-txt">
 
     {% block navbar %}{% endblock navbar %}
 
@@ -36,6 +36,7 @@
 
         <!--main content-->
         <div class="w-full lg:w-2/3 xl:w-2/5 pt-32 lg:pt-16 px-2">
+        {% block messages %}{% include 'messages.html' %}{% endblock messages %}
         {% block content %}{% endblock content %}
         </div>
 

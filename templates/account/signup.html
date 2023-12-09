@@ -1,0 +1,38 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load tailwind_filters %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock head_title %}
+
+{% block content %}
+
+<!--FORM-->
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-gray-100 dark:bg-dark-main flex justify-center">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight dark:text-dark-txt text-gray-900">Sign in to your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      <div>
+        <div class="mt-2 dark:text-dark-txt">
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+        </div>
+      </div>
+        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+          Registrarse</button>
+      </div>
+    </form>
+    <p class="mt-10 text-center text-sm text-gray-500">{% blocktrans %}Already have an account? <a href="{{ login_url }}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Iniciar seción  </a>.{% endblocktrans %}
+    </p>
+  </div>
+</div>
+
+{% endblock content %}
